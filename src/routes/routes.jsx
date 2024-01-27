@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import SignIn from "../SignIn";
 import Home from "../pages/Home/Home";
 import AddUser from "../pages/UserManagement/AddUser/AddUser";
-import UserList from "../pages/UserManagement/UserList/UserList";
 import Items from "../pages/Items/Items";
 import Profile from "../pages/Profile/Profile";
 import Login from "../pages/Login/Login";
+import UserManagement from "../pages/UserManagement/UserManagement";
+import UserInvite from "../pages/UserManagement/UserInvite/UserInvite";
+import SignupByInvite from "../pages/UserManagement/UserInvite/SignupByInvite/SignupByInvite";
 
 const routes = createBrowserRouter([
   {
@@ -21,8 +23,16 @@ const routes = createBrowserRouter([
         element: <AddUser />,
       },
       {
+        path: "signup/:email",
+        element: <SignupByInvite />,
+      },
+      {
         path: "users",
-        element: <UserList />,
+        element: <UserManagement />,
+      },
+      {
+        path: "invite",
+        element: <UserInvite />,
       },
       {
         path: "items",

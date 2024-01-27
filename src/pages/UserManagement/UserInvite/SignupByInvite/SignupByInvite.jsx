@@ -10,12 +10,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import supabaseAdmin from "@/dbutils/dbAdmin";
 import supabase from "@/dbutils/dbutils";
-import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
 
-const AddUser = () => {
+const SignupByInvite = () => {
+  const [user, setUser] = useState([]);
+  const currentUser = useParams();
+  const emailAddress = currentUser.email;
   const form = useForm();
   const {
     register,
@@ -24,17 +28,42 @@ const AddUser = () => {
     formState: { errors },
   } = useForm();
 
+  // submit form
+
+  useEffect(() => {
+    fetchUserByEmail(emailAddress);
+  }, [emailAddress]);
+  async function fetchUserByEmail(email) {
+    const { data, error } = await supabase
+      .from("user_persons_view")
+      .select("*")
+      .eq("email", email)
+      .single();
+    console.log("user data: ", data);
+    setUser(data);
+
+    if (error) {
+      console.error("Error fetching user:", error);
+      return null;
+    }
+
+    return data;
+  }
+  console.log("user: ", user);
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log("form data: ", data);
     try {
-      const response = await supabase.auth.signUp({
-        email: data.email,
+      if (user?.user_id === null) {
+        console.log("User Doesn't exist!");
+      }
+      const response = await supabase.auth.updateUser({
+        email: user?.email,
         password: data.password,
         options: {
           data: {
-            first_name: data.firstName,
-            middle_name: data.middleName,
-            last_name: data.lastName,
+            first_name: user?.first_name,
+            middle_name: user?.middle_name,
+            last_name: user?.last_name,
             user_name: data.username,
             org_id: 100001,
             org_type: "Supplier",
@@ -45,18 +74,6 @@ const AddUser = () => {
           },
         },
       });
-      // await supabase.from("users").insert({
-      //   first_name: data.firstName,
-      //   middle_name: data.middleName,
-      //   last_name: data.lastName,
-      //   username: data.username,
-      //   org_id: 100001,
-      //   org_type: "Supplier",
-      //   job_title: data.jobTitle,
-      //   org_id_column_name: "vendor_id",
-      //   org_id_table_name: "po_suppliers_all",
-      //   domain_name: data.domainName,
-      // });
 
       console.log("res: ", response);
       console.log("res: ", response.data);
@@ -68,12 +85,13 @@ const AddUser = () => {
   return (
     <Card className="w-[50%] shadow-2xl mx-auto my-5">
       <CardHeader>
-        <CardTitle className="text-center">Add User</CardTitle>
+        <CardTitle className="text-center">Signup</CardTitle>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             <FormField
+              disabled
               control={form.control}
               name="firstName"
               render={({ field }) => (
@@ -81,15 +99,10 @@ const AddUser = () => {
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="First Name"
+                      placeholder={user?.first_name}
                       {...field}
                       autoComplete="First Name"
-                      {...register("firstName", {
-                        required: {
-                          value: true,
-                          message: "First Name Required",
-                        },
-                      })}
+                      {...register("firstName")}
                     />
                   </FormControl>
                   <FormDescription>Error Message if Any</FormDescription>
@@ -98,6 +111,7 @@ const AddUser = () => {
               )}
             />
             <FormField
+              disabled
               control={form.control}
               name="middleName"
               render={({ field }) => (
@@ -105,7 +119,7 @@ const AddUser = () => {
                   <FormLabel>Middle Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Middle Name"
+                      placeholder={user?.middle_name}
                       {...field}
                       autoComplete="Middle name"
                       {...register("middleName")}
@@ -118,6 +132,7 @@ const AddUser = () => {
             />
 
             <FormField
+              disabled
               control={form.control}
               name="lastName"
               render={({ field }) => (
@@ -125,15 +140,10 @@ const AddUser = () => {
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Last Name"
+                      placeholder={user?.last_name}
                       {...field}
                       autoComplete="Last name"
-                      {...register("lastName", {
-                        required: {
-                          value: true,
-                          message: "Last Name Required",
-                        },
-                      })}
+                      {...register("lastName")}
                     />
                   </FormControl>
                   <FormDescription>Error Message if Any</FormDescription>
@@ -142,6 +152,8 @@ const AddUser = () => {
               )}
             />
             <FormField
+              className="font-bold"
+              disabled
               control={form.control}
               name="email"
               render={({ field }) => (
@@ -149,15 +161,10 @@ const AddUser = () => {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Email"
+                      placeholder={emailAddress}
                       {...field}
                       autoComplete="Email"
-                      {...register("email", {
-                        required: {
-                          value: true,
-                          message: "Email Required",
-                        },
-                      })}
+                      {...register(emailAddress)}
                     />
                   </FormControl>
                   <FormDescription>Error Message if Any</FormDescription>
@@ -264,7 +271,9 @@ const AddUser = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="flex mx-auto">
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>
@@ -272,4 +281,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default SignupByInvite;

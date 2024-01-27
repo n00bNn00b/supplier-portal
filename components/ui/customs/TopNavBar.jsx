@@ -14,7 +14,7 @@ import { Button } from "../button";
 
 const TopNavBar = () => {
   return (
-    <nav className="border-b-2 flex flex-row-reverse shadow-xl h-11 pr-10 sticky top-0 z-50 bg-background ">
+    <nav className="border-b-2 flex flex-row-reverse shadow-xl h-11 sticky top-0 z-50 bg-background">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>

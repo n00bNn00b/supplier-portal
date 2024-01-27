@@ -6,16 +6,15 @@ import { Outlet } from "react-router-dom";
 const Home = () => {
   return (
     <div className="w-auto">
-      <div className="w-auto">
+      <div>
         <TopNavBar />
-
-        <div className="flex gap-5">
-          <div className="h-screen">
-            <NavBar />
-          </div>
-          <div className="mt-5 mx-auto w-full">
-            <Outlet />
-          </div>
+      </div>
+      <div className="flex">
+        <div className="h-screen">
+          <NavBar />
+        </div>
+        <div className="w-[95%] mx-auto">
+          <Outlet />
         </div>
       </div>
     </div>

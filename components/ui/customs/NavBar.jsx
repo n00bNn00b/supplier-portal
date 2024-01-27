@@ -6,6 +6,7 @@ import {
   List,
   LucideUserPlus,
   MenuIcon,
+  Send,
   UserPlus,
   UserRoundIcon,
   Users,
@@ -49,6 +50,9 @@ const NavBar = () => {
           </MenuItem>
           <MenuItem icon={<Users />} component={<Link to="/users" />}>
             All Users
+          </MenuItem>
+          <MenuItem icon={<Send />} component={<Link to="/invite" />}>
+            Invite a User
           </MenuItem>
         </SubMenu>
         <MenuItem icon={<List />} component={<Link to="/items" />}>
