@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import supabase from "@/dbutils/dbutils";
-import { cn } from "@/lib/utils";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +39,7 @@ const Login = () => {
       password: data.password,
     });
     console.log("responses: ", response);
+    localStorage.setItem("sp_auth", response.data?.user?.aud);
     if (response.error === null) {
       navigate("/");
     }

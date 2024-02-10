@@ -23,12 +23,19 @@ const Profile = () => {
       const org_type = user?.user_metadata?.org_type;
       const org_id = user?.user_metadata?.org_id;
       const URI = user?.user_metadata?.domain_name;
-      const userData = URI + "&" + org_type + "&" + org_id;
+      const userData =
+        "http://" +
+        URI +
+        "&org_type=" +
+        org_type +
+        "&org_id=" +
+        org_id +
+        "&token=";
       setUserDetails(userData);
     };
 
     const userData = retrieveUser();
-  });
+  }, []);
 
   const handleQrCode = () => {
     console.log("clicked");

@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import UserManagement from "../pages/UserManagement/UserManagement";
 import UserInvite from "../pages/UserManagement/UserInvite/UserInvite";
 import SignupByInvite from "../pages/UserManagement/UserInvite/SignupByInvite/SignupByInvite";
+import RequireAuth from "../apputils/RequireAuth/RequireAuth";
 
 const routes = createBrowserRouter([
   {
@@ -16,11 +17,19 @@ const routes = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <RequireAuth>
+        <Home />
+      </RequireAuth>
+    ),
     children: [
       {
         path: "adduser",
-        element: <AddUser />,
+        element: (
+          <RequireAuth>
+            <AddUser />
+          </RequireAuth>
+        ),
       },
       {
         path: "signup/:email",
@@ -28,19 +37,35 @@ const routes = createBrowserRouter([
       },
       {
         path: "users",
-        element: <UserManagement />,
+        element: (
+          <RequireAuth>
+            <UserManagement />
+          </RequireAuth>
+        ),
       },
       {
         path: "invite",
-        element: <UserInvite />,
+        element: (
+          <RequireAuth>
+            <UserInvite />
+          </RequireAuth>
+        ),
       },
       {
         path: "items",
-        element: <Items />,
+        element: (
+          <RequireAuth>
+            <Items />
+          </RequireAuth>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <RequireAuth>
+            <Profile />
+          </RequireAuth>
+        ),
       },
     ],
   },
