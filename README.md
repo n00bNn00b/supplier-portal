@@ -1,8 +1,29 @@
-# React + Vite
+# Supplier Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Supplier Portal
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the project first using the following commands:
+
+```bash
+git clone https://github.com/n00bNn00b/supplier-portal.git
+```
+
+2. If you do not have yarn installed on your system, use the following command:
+
+```bash
+npm install --global yarn
+```
+
+3. Open the project in your editor and run the following command:
+
+```bash
+yarn
+```
+
+4. Now run the server using the following command:
+
+```bash
+yarn dev
+```
