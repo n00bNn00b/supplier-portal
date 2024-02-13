@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 const Home = () => {
   return (
     <div className="w-auto">
-      <div>
+      <div className="top-0 sticky z-50">
         <TopNavBar />
       </div>
       <div className="flex">

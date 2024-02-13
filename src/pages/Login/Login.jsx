@@ -40,13 +40,17 @@ const Login = () => {
     });
     console.log("responses: ", response);
     localStorage.setItem("sp_auth", response.data?.user?.aud);
+    localStorage.setItem(
+      "sp_access_token",
+      response?.data?.session?.access_token
+    );
     if (response.error === null) {
       navigate("/");
     }
     console.log("responsesData: ", response.data);
   };
   return (
-    <Card className="w-1/2 mx-auto mt-20">
+    <Card className="w-1/2 mx-auto mt-20 shadow-lg">
       <CardHeader>
         <CardTitle className="text-center">Supplier Portal</CardTitle>
         <CardDescription className="text-center">
@@ -55,7 +59,10 @@ const Login = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={handleSubmit(onSubmit)} className="w-2/3 space-y-2">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-2/3 space-y-2 mx-auto"
+          >
             <FormField
               control={form.control}
               name="email"
@@ -125,7 +132,9 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Login</Button>
+            <Button type="submit" className="flex mx-auto">
+              Login
+            </Button>
           </form>
         </Form>
       </CardContent>

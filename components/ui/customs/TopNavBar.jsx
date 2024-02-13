@@ -7,12 +7,24 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../navigation-menu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Bell, Power } from "lucide-react";
 import { Button } from "../button";
+import supabase from "@/dbutils/dbutils";
 
 const TopNavBar = () => {
+  const navigate = useNavigate();
+  const handleSignOut = async () => {
+    console.log("logout");
+    const { error } = await supabase.auth.signOut();
+    // console.log("error", error);
+    if (!error) {
+      localStorage.removeItem("sp_auth");
+      localStorage.removeItem("sp_access_token");
+      navigate("/signin");
+    }
+  };
   return (
     <nav className="border-b-2 flex flex-row-reverse shadow-xl h-11 sticky top-0 z-50 bg-background">
       <NavigationMenu>
@@ -43,7 +55,10 @@ const TopNavBar = () => {
             </Button>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Button className="border-0  text-white hover:text-yellow-200 bg-destructive hover:bg-destructive">
+            <Button
+              onClick={handleSignOut}
+              className="border-0  text-white hover:text-yellow-200 bg-destructive hover:bg-destructive"
+            >
               <Power className="mr-2" /> Logout
             </Button>
           </NavigationMenuItem>
