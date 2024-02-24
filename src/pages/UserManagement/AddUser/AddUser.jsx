@@ -14,6 +14,7 @@ import supabase from "@/dbutils/dbutils";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const AddUser = () => {
   const form = useForm();
@@ -21,6 +22,7 @@ const AddUser = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -45,21 +47,15 @@ const AddUser = () => {
           },
         },
       });
-      // await supabase.from("users").insert({
-      //   first_name: data.firstName,
-      //   middle_name: data.middleName,
-      //   last_name: data.lastName,
-      //   username: data.username,
-      //   org_id: 100001,
-      //   org_type: "Supplier",
-      //   job_title: data.jobTitle,
-      //   org_id_column_name: "vendor_id",
-      //   org_id_table_name: "po_suppliers_all",
-      //   domain_name: data.domainName,
-      // });
 
       console.log("res: ", response);
       console.log("res: ", response.data);
+      reset();
+      if (response.error === null) {
+        toast.success("User Added Successfully!");
+      } else {
+        toast.error(response.error.message);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -264,7 +260,9 @@ const AddUser = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button className="flex mx-auto" type="submit">
+              Submit
+            </Button>
           </form>
         </Form>
       </CardContent>
