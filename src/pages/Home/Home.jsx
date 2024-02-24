@@ -13,7 +13,7 @@ const Home = () => {
         <div className="h-screen">
           <NavBar />
         </div>
-        <div className="w-[95%] mx-auto">
+        <div className="w-[95%] mx-auto my-20">
           <Outlet />
         </div>
       </div>
