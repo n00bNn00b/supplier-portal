@@ -9,11 +9,11 @@ const Home = () => {
       <div className="top-0 sticky z-50">
         <TopNavBar />
       </div>
-      <div className="flex">
+      <div className="flex w-[100%] h-screen">
         <div className="h-screen">
           <NavBar />
         </div>
-        <div className="w-[95%] mx-auto my-20">
+        <div className="w-full mx-auto px-3 my-20 overflow-x-hidden">
           <Outlet />
         </div>
       </div>

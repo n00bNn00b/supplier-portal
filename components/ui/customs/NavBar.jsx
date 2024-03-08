@@ -18,7 +18,7 @@ const NavBar = () => {
   const [open, setOpen] = useState(false);
   return (
     <Sidebar
-      className="h-full bottom-0 top-0 left-0  sticky"
+      className="h-screen bottom-0 top-0 left-0  sticky"
       collapsed={open}
       transitionDuration={600}
     >
