@@ -26,7 +26,7 @@ const UserList = () => {
     return data;
   };
   return (
-    <Table className="border rounded-lg overflow-x-scroll border-red-500 mx-5 w-[auto]">
+    <Table className="border rounded-xl overflow-x-scroll mx-5 w-[auto]">
       <TableCaption>A list of Users.</TableCaption>
       <TableHeader>
         <TableRow>
