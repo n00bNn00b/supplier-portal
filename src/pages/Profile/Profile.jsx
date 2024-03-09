@@ -54,7 +54,7 @@ const Profile = () => {
   }, [userID]);
 
   const handleQrCode = () => {
-    console.log("clicked");
+    // console.log("clicked");
     setVisible(!visible);
   };
   return (
