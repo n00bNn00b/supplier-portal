@@ -9,6 +9,7 @@ import UserManagement from "../pages/UserManagement/UserManagement";
 import UserInvite from "../pages/UserManagement/UserInvite/UserInvite";
 import SignupByInvite from "../pages/UserManagement/UserInvite/SignupByInvite/SignupByInvite";
 import RequireAuth from "../apputils/RequireAuth/RequireAuth";
+import Notification from "../pages/Notification/Notification";
 
 const routes = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ const routes = createBrowserRouter([
         element: (
           <RequireAuth>
             <AddUser />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "notifications",
+        element: (
+          <RequireAuth>
+            <Notification />
           </RequireAuth>
         ),
       },
