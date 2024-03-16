@@ -50,9 +50,11 @@ const TopNavBar = () => {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem className="pr-5">
-            <Button variant="outline" size="icon" className="border-0">
-              <Bell />
-            </Button>
+            <Link to="/notifications">
+              <Button variant="outline" size="icon" className="border-0">
+                <Bell />
+              </Button>
+            </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Button
