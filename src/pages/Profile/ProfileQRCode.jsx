@@ -8,12 +8,13 @@ const ProfileQRCode = ({ handleQrCode, visible, setVisible, qrValue }) => {
     <Card>
       {!visible && (
         <Button className="flex mx-auto mt-2 mb-10" onClick={handleQrCode}>
-          Generate QR Code
+          Generate Login QR Code
         </Button>
       )}
       {visible && (
         <CardContent className="w-fit mx-auto grid grid-cols-1">
-          <QRCode value={qrValue} className="flex mx-auto mt-10" />
+          <h2 className="text-center font-bold text-2xl">Login QR Code</h2>
+          <QRCode value={qrValue} className="flex mx-auto mt-5" />
 
           <CardDescription className="text-center mt-5 overflow-hidden">
             {qrValue}

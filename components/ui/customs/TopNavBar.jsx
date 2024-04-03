@@ -9,7 +9,15 @@ import {
 } from "../navigation-menu";
 import { Link, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Bell, Power } from "lucide-react";
+import {
+  AlertCircle,
+  Bell,
+  BellIcon,
+  HomeIcon,
+  ListChecksIcon,
+  MailIcon,
+  Power,
+} from "lucide-react";
 import { Button } from "../button";
 import supabase from "@/dbutils/dbutils";
 
@@ -29,11 +37,28 @@ const TopNavBar = () => {
     <nav className="border-b-2 flex flex-row-reverse shadow-xl h-11 sticky top-0 z-50 bg-background">
       <NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <Link to="/">Home</Link>
+          <NavigationMenuItem className="pr-5">
+            <Link to="/">
+              <Button variant="outline" size="icon" className="border-0">
+                <HomeIcon />
+              </Button>
+            </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Tasks</NavigationMenuTrigger>
+          <NavigationMenuItem className="pr-5">
+            <Link to="/alerts">
+              <Button variant="outline" size="icon" className="border-0">
+                <BellIcon />
+              </Button>
+            </Link>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem className="py-5">
+            <Link to="/tasks">
+              <Button variant="outline" size="icon" className="border-0">
+                <ListChecksIcon />
+              </Button>
+            </Link>
+            {/* <NavigationMenuTrigger>Tasks</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-6 md:w-[200px] lg:w-[200px] lg:grid-cols-1">
                 <li className="row-span-3">
@@ -47,12 +72,12 @@ const TopNavBar = () => {
                   </NavigationMenuLink>
                 </li>
               </ul>
-            </NavigationMenuContent>
+            </NavigationMenuContent> */}
           </NavigationMenuItem>
           <NavigationMenuItem className="pr-5">
             <Link to="/notifications">
               <Button variant="outline" size="icon" className="border-0">
-                <Bell />
+                <MailIcon />
               </Button>
             </Link>
           </NavigationMenuItem>

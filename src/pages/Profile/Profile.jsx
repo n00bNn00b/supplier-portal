@@ -2,6 +2,7 @@ import supabase from "@/dbutils/dbutils";
 import React, { useEffect, useState } from "react";
 import ProfileDetails from "./ProfileDetails";
 import ProfileQRCode from "./ProfileQRCode";
+import SiteConfQR from "./SiteConfQR/SiteConfQR";
 
 const Profile = () => {
   const [qrValue, setQrValue] = useState(null);
@@ -69,7 +70,8 @@ const Profile = () => {
             jobTitle={jobTitle}
           />
         </div>
-        <div className="w-1/2 p-3 m-3">
+        <div className="w-1/2 grid grid-cols-2">
+          <SiteConfQR />
           <ProfileQRCode
             qrValue={qrValue}
             visible={visible}
