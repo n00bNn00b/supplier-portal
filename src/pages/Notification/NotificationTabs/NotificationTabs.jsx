@@ -13,7 +13,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React from "react";
 import Inbox from "../Inbox/Inbox";
 import Sent from "../Sent/Sent";
-import { InboxIcon, SendIcon } from "lucide-react";
+import { BookDashedIcon, InboxIcon, SendIcon } from "lucide-react";
+import Draft from "../Draft/Draft";
 
 const NotificationTabs = () => {
   return (
@@ -28,10 +29,15 @@ const NotificationTabs = () => {
             <SendIcon className="mx-3" />
             Sent
           </TabsTrigger>
+          <TabsTrigger value="draft" className="flex justify-start">
+            <BookDashedIcon className="mx-3" />
+            Draft
+          </TabsTrigger>
         </TabsList>
         <div>
           <Inbox />
           <Sent />
+          <Draft />
         </div>
       </Tabs>
     </>

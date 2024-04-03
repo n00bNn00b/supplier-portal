@@ -1,14 +1,4 @@
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -20,25 +10,25 @@ import {
 import { TabsContent } from "@/components/ui/tabs";
 import React from "react";
 
-const Sent = () => {
-  const sentMessages = [
+const Draft = () => {
+  const draftMessages = [
     {
       id: 1,
-      to: "John",
+      from: "John",
       message:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima similique incidunt ab qui itaque doloribus magni praesentium! Odit, corrupti maiores!",
       date: "3/12/2023",
     },
     {
       id: 2,
-      to: "Miller",
+      from: "Miller",
       message:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima similique incidunt ab qui itaque doloribus magni praesentium! Odit, corrupti maiores!",
       date: "3/11/2023",
     },
     {
       id: 3,
-      to: "Lucy",
+      from: "Lucy",
       message:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima similique incidunt ab qui itaque doloribus magni praesentium! Odit, corrupti maiores!",
       date: "3/10/2023",
@@ -46,27 +36,29 @@ const Sent = () => {
   ];
   return (
     <>
-      <TabsContent value="sent">
+      <TabsContent value="draft">
         <Card>
           <CardHeader>
-            <CardTitle>Sent</CardTitle>
+            <CardTitle>Draft</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="space-y-1">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[100px] font-bold">To</TableHead>
+                    <TableHead className="w-[100px] font-bold">From</TableHead>
                     <TableHead className="font-bold">Subject</TableHead>
                     <TableHead className="font-bold">Date</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {sentMessages.map((sent) => (
-                    <TableRow key={sent.id}>
-                      <TableCell className="font-medium">{sent.to}</TableCell>
-                      <TableCell>{sent.message}</TableCell>
-                      <TableCell>{sent.date}</TableCell>
+                  {draftMessages.map((draft) => (
+                    <TableRow key={draft.id}>
+                      <TableCell className="font-medium">
+                        {draft.from}
+                      </TableCell>
+                      <TableCell>{draft.message}</TableCell>
+                      <TableCell>{draft.date}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -79,4 +71,4 @@ const Sent = () => {
   );
 };
 
-export default Sent;
+export default Draft;
