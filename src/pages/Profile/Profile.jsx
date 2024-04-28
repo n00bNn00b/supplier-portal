@@ -37,17 +37,7 @@ const Profile = () => {
       setUserEmail(user?.email);
       setUserName(user?.user_metadata?.user_name);
       setJobTitle(user?.user_metadata?.job_title);
-      const userData =
-        "http://" +
-        URI +
-        "&org_type=" +
-        org_type +
-        "&org_id=" +
-        org_id +
-        "&userID=" +
-        userID +
-        "&token=" +
-        token;
+      const userData = "userID=" + userID;
       setQrValue(userData);
     };
 
