@@ -52,7 +52,7 @@ const TopNavBar = () => {
             </Link>
           </NavigationMenuItem>
 
-          <NavigationMenuItem className="py-5">
+          <NavigationMenuItem className="pr-5">
             <Link to="/tasks">
               <Button variant="outline" size="icon" className="border-0">
                 <ListChecksIcon />
